@@ -1,29 +1,42 @@
 ﻿using System;
 
-class Program
+public class HighScoreApp
 {
-    // Global variables for high score and high score holder
-    static int highscore = 0;
-    static string highscorePlayer = "";
+    // Global variables
+    private static int highscore = 0;
+    private static string highscorePlayer = "No one";
 
-    static void Main()
+    public static void Main(string[] args)
     {
-        CheckHighscore(100, "Alice");
-        CheckHighscore(80, "Bob");
-        CheckHighscore(120, "Charlie");
+        while (true)
+        {
+            // Ask for user inputs
+            Console.WriteLine("Enter the player's name:");
+            string playerName = Console.ReadLine();
+
+            Console.WriteLine("Enter the player's score:");
+            int score = int.Parse(Console.ReadLine());
+
+            CheckHighScore(score, playerName);
+
+            // Ask if the user wants to continue
+            Console.WriteLine("Do you want to enter another score? (yes/no)");
+            string response = Console.ReadLine();
+            if (response.ToLower() != "yes")
+            {
+                break;
+            }
+        }
     }
 
-    static void CheckHighscore(int score, string playerName)
+    public static void CheckHighScore(int score, string playerName)
     {
-        // Check if the new score is higher than the current high score
         if (score > highscore)
         {
-            // Update the high score and high score player
             highscore = score;
             highscorePlayer = playerName;
-
-            Console.WriteLine("New highscore is " + highscore);
-            Console.WriteLine("New highscore holder is " + highscorePlayer);
+            Console.WriteLine("New highscore is " + score);
+            Console.WriteLine("New highscore holder is " + playerName);
         }
         else
         {
